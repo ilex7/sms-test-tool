@@ -1,0 +1,6 @@
+name = "sms-bombing-tool"
+type = "pages"
+
+[build]
+command = ""
+publish = "."

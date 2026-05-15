@@ -1,0 +1,55 @@
+# ========================================
+# Cloudflare Pages 静态资源缓存策略
+# ========================================
+
+# 首页 - 不缓存，确保每次获取最新版本
+/index.html
+  Cache-Control: no-cache, must-revalidate
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+
+# 根路径 - 不缓存
+/
+  Cache-Control: no-cache, must-revalidate
+
+# 图片资源 - 长缓存（30天）
+/*.gif
+  Cache-Control: public, max-age=2592000, s-maxage=2592000, immutable
+  X-Content-Type-Options: nosniff
+
+/*.png
+  Cache-Control: public, max-age=2592000, s-maxage=2592000, immutable
+  X-Content-Type-Options: nosniff
+
+/*.jpg
+  Cache-Control: public, max-age=2592000, s-maxage=2592000, immutable
+  X-Content-Type-Options: nosniff
+
+/*.jpeg
+  Cache-Control: public, max-age=2592000, s-maxage=2592000, immutable
+  X-Content-Type-Options: nosniff
+
+/*.webp
+  Cache-Control: public, max-age=2592000, s-maxage=2592000, immutable
+  X-Content-Type-Options: nosniff
+
+# JS/CSS 资源 - 长缓存（7天）
+/*.js
+  Cache-Control: public, max-age=604800, s-maxage=604800
+  X-Content-Type-Options: nosniff
+
+/*.css
+  Cache-Control: public, max-age=604800, s-maxage=604800
+  X-Content-Type-Options: nosniff
+
+# 代理接口 - 不缓存
+/proxy
+  Cache-Control: no-store, no-cache, must-revalidate
+  X-Content-Type-Options: nosniff
+
+# 全局安全头
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
